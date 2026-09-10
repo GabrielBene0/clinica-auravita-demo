@@ -349,19 +349,20 @@ function Shell({ children }: { children: ReactNode }) {
         const select = gsap.utils.selector(hero);
         gsap
           .timeline({ defaults: { ease: "power3.out" } })
-          .from(".site-header", { y: -18, duration: 0.7 })
-          .from(select(".hero-kicker"), { y: 16, duration: 0.5 }, "-=0.28")
-          .from(select("h1"), { y: 36, duration: 0.82 }, "-=0.24")
-          .from(select(".hero-copy > p"), { y: 20, duration: 0.58 }, "-=0.48")
+          .from(".site-header", { y: -14, opacity: 0.65, duration: 0.62 })
+          .from(select(".hero-kicker"), { y: -18, opacity: 0.2, duration: 0.5 }, "-=0.24")
+          .from(select("h1"), { y: -28, opacity: 0.18, duration: 0.82 }, "-=0.26")
+          .from(select(".hero-copy > p"), { y: -18, opacity: 0.2, duration: 0.58 }, "-=0.46")
           .from(select(".gold-rule"), { scaleX: 0, transformOrigin: "left", duration: 0.52 }, "-=0.34")
-          .from(select(".hero-copy .outline-button"), { y: 14, duration: 0.5 }, "-=0.3")
+          .from(select(".hero-copy .outline-button"), { y: -14, opacity: 0.3, duration: 0.5 }, "-=0.3")
           .from(select(".mosaic-cell"), {
-            y: 28,
-            scale: 0.94,
+            y: -24,
+            scale: 0.97,
+            opacity: 0.22,
             duration: 0.72,
             stagger: 0.09,
           }, "-=0.5")
-          .from(select(".mosaic-caption"), { y: 12, duration: 0.42 }, "-=0.26");
+          .from(select(".mosaic-caption"), { y: -12, opacity: 0.3, duration: 0.42 }, "-=0.26");
       }
 
       gsap.utils
