@@ -4,12 +4,15 @@ import {
   createContext,
   useContext,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type ReactNode,
   type FormEvent,
 } from "react";
 import Link from "next/link";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowRight,
   ArrowLeft,
@@ -336,27 +339,70 @@ function Shell({ children }: { children: ReactNode }) {
   const [specialty, setSpecialty] = useState("");
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const elements = Array.from(
-      document.querySelectorAll<HTMLElement>(
-        "main > section, main > .contact-tiles, footer",
-      ),
+
+    gsap.registerPlugin(ScrollTrigger);
+    const context = gsap.context(() => {
+      const hero = document.querySelector<HTMLElement>(".motion-hero");
+      if (hero) {
+        const select = gsap.utils.selector(hero);
+        gsap
+          .timeline({ defaults: { ease: "power3.out" } })
+          .from(".site-header", { y: -18, duration: 0.7 })
+          .from(select(".hero-kicker"), { y: 16, duration: 0.5 }, "-=0.28")
+          .from(select("h1"), { y: 36, duration: 0.82 }, "-=0.24")
+          .from(select(".hero-copy > p"), { y: 20, duration: 0.58 }, "-=0.48")
+          .from(select(".gold-rule"), { scaleX: 0, transformOrigin: "left", duration: 0.52 }, "-=0.34")
+          .from(select(".hero-copy .outline-button"), { y: 14, duration: 0.5 }, "-=0.3")
+          .from(select(".mosaic-cell"), {
+            y: 28,
+            scale: 0.94,
+            duration: 0.72,
+            stagger: 0.09,
+          }, "-=0.5")
+          .from(select(".mosaic-caption"), { y: 12, duration: 0.42 }, "-=0.26");
+      }
+
+      gsap.utils
+        .toArray<HTMLElement>("main > section:not(.motion-hero), main > .contact-tiles")
+        .forEach((section) => {
+          const targets = section.querySelectorAll<HTMLElement>(
+            ".section-heading, .carousel, .team-card, .review, .faq-list details, .contact-tiles > *, .clinic-section > div, .clinic-section > img, .outline-button",
+          );
+          if (!targets.length) return;
+          gsap.from(targets, {
+            y: 34,
+            autoAlpha: 0,
+            duration: 0.7,
+            ease: "power3.out",
+            stagger: 0.075,
+            scrollTrigger: {
+              trigger: section,
+              start: "top 82%",
+              once: true,
+            },
+          });
+        });
+
+      ScrollTrigger.refresh();
+    }, document.body);
+
+    return () => context.revert();
+  }, []);
+  useEffect(() => {
+    const animatedElements = document.querySelectorAll<HTMLElement>(
+      ".motion-hero, .specialty-card",
     );
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
+          entry.target.classList.toggle("is-offscreen", !entry.isIntersecting);
         });
       },
-      { threshold: 0.12 },
+      { threshold: 0.01 },
     );
-    elements.forEach((element) => {
-      element.classList.add("reveal-ready");
-      observer.observe(element);
-    });
+    animatedElements.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
   }, []);
   return (
@@ -520,6 +566,10 @@ function HeroMosaic() {
           </div>
         ))}
       </div>
+      <div className="mosaic-caption" aria-hidden="true">
+        <span>01 — 04</span>
+        <span>Momentos de cuidado</span>
+      </div>
       <div className="hero-dots dots">
         {heroImages.map((im, i) => (
           <button
@@ -536,8 +586,9 @@ function HeroMosaic() {
 }
 function Hero() {
   return (
-    <section className="hero container">
+    <section className="hero container motion-hero">
       <div className="hero-copy">
+        <span className="hero-kicker">CUIDADO INTEGRADO · AURAVITA</span>
         <h1>
           Saúde e estética
           <br className="desktop-break" /> para cuidar de você
@@ -641,6 +692,9 @@ function Specialties() {
               tabIndex={i >= index && i < index + perPage ? 0 : -1}
               aria-label={`Saiba mais sobre ${s.name}`}
             >
+              <span className="card-index" aria-hidden="true">
+                0{i + 1}
+              </span>
               <img
                 src={asset(s.image)}
                 style={{ objectPosition: s.position }}

@@ -410,17 +410,6 @@ summary:focus-visible {
 .section-heading .gold-rule {
   margin: 26px auto 0;
 }
-.reveal-ready {
-  opacity: 0;
-  filter: blur(5px);
-  transform: translateY(30px) scale(.985);
-  transition: opacity .8s cubic-bezier(.22, 1, .36, 1), transform .8s cubic-bezier(.22, 1, .36, 1), filter .7s ease;
-}
-.reveal-ready.is-visible {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateY(0) scale(1);
-}
 .carousel {
   overflow: hidden;
   border-radius: 17px;
@@ -1947,3 +1936,278 @@ footer {
   }
 }
 .portrait img{object-position:center top}
+
+/* Premium editorial direction: a restrained dark canvas, warm metal accents and
+   a single type-and-image hierarchy that brings the booking CTA forward. */
+:root {
+  --display-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+.motion-hero {
+  min-height: 620px;
+  padding: 74px 68px 68px;
+  gap: 64px;
+  border: 1px solid rgba(232, 206, 118, 0.15);
+  border-radius: 28px;
+  background:
+    linear-gradient(125deg, rgba(232, 206, 118, 0.07), transparent 38%),
+    radial-gradient(circle at 100% 100%, rgba(41, 69, 65, 0.32), transparent 43%),
+    #0d0f10;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.24);
+}
+.motion-hero::before {
+  width: 680px;
+  height: 680px;
+  right: -320px;
+  top: -360px;
+  opacity: 0.78;
+}
+.motion-hero::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  inset: 13px;
+  border: 1px solid rgba(244, 244, 242, 0.05);
+  border-radius: 19px;
+}
+.motion-hero .hero-copy,
+.motion-hero .hero-visual {
+  z-index: 1;
+}
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  color: #e8ce76;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  line-height: 1.4;
+}
+.hero-kicker::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: currentColor;
+}
+.motion-hero h1,
+.section-heading h2,
+.section-heading h1,
+.cta h2 {
+  font-family: var(--display-serif);
+  font-weight: 400;
+}
+.motion-hero h1 {
+  max-width: 620px;
+  font-size: clamp(3rem, 4.2vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+}
+.motion-hero .hero-copy p {
+  max-width: 480px;
+  margin-top: 31px;
+  color: #c8cdca;
+}
+.motion-hero .gold-rule {
+  width: 116px;
+  margin-top: 31px;
+}
+.motion-hero .outline-button {
+  min-height: 61px;
+  margin-left: 0;
+  border-radius: 999px;
+  padding-inline: 29px;
+}
+.motion-hero .hero-visual {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.motion-hero .mosaic {
+  gap: 14px;
+  grid-template-rows: 174px 174px;
+}
+.motion-hero .mosaic-cell {
+  border: 1px solid rgba(244, 244, 242, 0.11);
+  border-radius: 14px;
+  animation: none;
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.22);
+}
+.motion-hero .mosaic-cell::after {
+  background: linear-gradient(120deg, transparent 35%, rgba(232, 206, 118, 0.17) 48%, transparent 62%);
+  animation-duration: 10s;
+}
+.motion-hero.is-offscreen::before,
+.motion-hero.is-offscreen .mosaic-cell::after,
+.specialty-card.is-offscreen::after {
+  animation-play-state: paused;
+}
+.motion-hero .mosaic-cell img {
+  filter: saturate(0.88) contrast(1.05);
+}
+.motion-hero .mosaic-cell:hover img {
+  filter: saturate(1.04) contrast(1.05);
+  transform: scale(1.07);
+}
+.mosaic-caption {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(244, 244, 242, 0.12);
+  color: #aeb4af;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.mosaic-caption span:first-child {
+  color: var(--gold);
+}
+
+.section {
+  padding-top: 116px;
+}
+.section-heading {
+  margin-bottom: 68px;
+}
+.section-heading h2 {
+  font-size: clamp(2.7rem, 4.1vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.06em;
+}
+.section-heading p {
+  max-width: 610px;
+  color: #bfc5c1;
+}
+.section-heading .gold-rule {
+  width: 68px;
+}
+.specialty-card {
+  border: 1px solid rgba(244, 244, 242, 0.09);
+  border-radius: 20px;
+  animation: none;
+}
+.card-index {
+  position: absolute;
+  z-index: 2;
+  top: 24px;
+  left: 26px;
+  color: #f4f4f2;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+.specialty-card::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 19px;
+  left: 19px;
+  width: 49px;
+  height: 31px;
+  border: 1px solid rgba(244, 244, 242, 0.35);
+  border-radius: 999px;
+}
+.specialty-card:hover {
+  transform: translateY(-10px) rotateX(1deg) scale(1.012);
+}
+.card-copy h3 {
+  font-family: var(--display-serif);
+  font-size: 31px;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+.review {
+  border: 1px solid rgba(244, 244, 242, 0.08);
+  border-radius: 18px;
+}
+.cta {
+  position: relative;
+  isolation: isolate;
+  max-width: 1050px;
+  margin-top: 110px;
+  margin-bottom: 28px;
+  padding: 94px 64px 98px;
+  overflow: hidden;
+  border: 1px solid rgba(232, 206, 118, 0.2);
+  border-radius: 28px;
+  background: linear-gradient(115deg, #121716, #111212 55%, #17231f);
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 420px;
+  height: 420px;
+  top: -270px;
+  right: -120px;
+  border: 1px solid rgba(232, 206, 118, 0.17);
+  border-radius: 50%;
+}
+.cta .outline-button {
+  border-radius: 999px;
+}
+.contact-tiles > a,
+.contact-tiles > button {
+  border: 1px solid rgba(244, 244, 242, 0.08);
+  border-radius: 18px;
+}
+
+@media (max-width: 1050px) {
+  .motion-hero {
+    padding: 58px 46px;
+    gap: 38px;
+  }
+  .motion-hero h1 {
+    font-size: clamp(2.9rem, 6vw, 4rem);
+  }
+  .motion-hero .mosaic {
+    grid-template-rows: 145px 145px;
+  }
+}
+@media (max-width: 699px) {
+  .motion-hero {
+    min-height: auto;
+    padding: 48px 25px 27px;
+    border-radius: 22px;
+  }
+  .motion-hero h1 {
+    font-size: clamp(3rem, 14vw, 4rem);
+  }
+  .hero-kicker {
+    margin-bottom: 20px;
+    font-size: 9px;
+  }
+  .motion-hero .mosaic {
+    grid-template-rows: 126px 126px;
+  }
+  .mosaic-caption {
+    margin-top: 12px;
+    font-size: 8px;
+  }
+  .section {
+    padding-top: 82px;
+  }
+  .section-heading {
+    margin-bottom: 49px;
+  }
+  .section-heading h2 {
+    font-size: clamp(2.6rem, 12vw, 3.6rem);
+  }
+  .cta {
+    margin-top: 74px;
+    padding: 68px 24px 73px;
+    border-radius: 22px;
+  }
+  .card-copy h3 {
+    font-size: 29px;
+  }
+  .floating-whatsapp {
+    top: auto;
+    right: 18px;
+    bottom: 18px;
+  }
+}
