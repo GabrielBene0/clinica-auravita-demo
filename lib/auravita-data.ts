@@ -12,8 +12,8 @@ export const specialties = [
   {
     slug: "estetica-facial",
     name: "Estética facial",
-    image: "care",
-    position: "85% 65%",
+    image: "consultation",
+    position: "50% 50%",
     description: "Cuidado individualizado para valorizar a sua beleza natural.",
     detail:
       "O primeiro encontro é dedicado a compreender o que você deseja cuidar. A partir dessa conversa, a equipe apresenta possibilidades para uma rotina de cuidado facial personalizada.",
@@ -21,8 +21,8 @@ export const specialties = [
   {
     slug: "nutrologia",
     name: "Nutrologia",
-    image: "team",
-    position: "50% 35%",
+    image: "nutrition",
+    position: "50% 50%",
     description:
       "Saúde e alimentação, com atenção à sua história e ao seu dia a dia.",
     detail:
@@ -31,8 +31,8 @@ export const specialties = [
   {
     slug: "estetica-corporal",
     name: "Estética corporal",
-    image: "interior",
-    position: "70% 60%",
+    image: "body-care",
+    position: "50% 50%",
     description: "Um plano de cuidado que respeita o seu corpo e o seu ritmo.",
     detail:
       "Escuta e avaliação individual para conversar sobre suas expectativas e conhecer as possibilidades de cuidado corporal da clínica.",
@@ -40,8 +40,8 @@ export const specialties = [
   {
     slug: "harmonizacao-facial",
     name: "Harmonização facial",
-    image: "care",
-    position: "75% 50%",
+    image: "facial-analysis",
+    position: "50% 50%",
     description: "Equilíbrio e delicadeza, respeitando a sua individualidade.",
     detail:
       "Uma avaliação cuidadosa das suas expectativas e características. O planejamento é discutido com você, com espaço para esclarecer cada etapa.",
@@ -58,8 +58,8 @@ export const specialties = [
   {
     slug: "laser-e-pele",
     name: "Laser e tratamentos de pele",
-    image: "care",
-    position: "20% 45%",
+    image: "laser",
+    position: "50% 50%",
     description: "Tecnologia e atenção aos detalhes no cuidado com a pele.",
     detail:
       "Conheça as possibilidades da clínica em uma avaliação individual. Cada plano começa por entender suas necessidades e esclarecer suas dúvidas.",
