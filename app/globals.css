@@ -2171,18 +2171,50 @@ footer {
 @media (max-width: 699px) {
   .motion-hero {
     min-height: auto;
-    padding: 48px 25px 27px;
+    gap: 28px;
+    padding: 38px 22px 26px;
     border-radius: 22px;
+    text-align: left;
   }
   .motion-hero h1 {
-    font-size: clamp(3rem, 14vw, 4rem);
+    font-size: clamp(2.75rem, 12vw, 3.5rem);
+    line-height: 1.01;
+  }
+  .motion-hero .hero-copy p {
+    margin-top: 24px;
+    line-height: 1.6;
+  }
+  .motion-hero .gold-rule {
+    width: 72px;
+    margin: 25px 0;
+  }
+  .motion-hero .outline-button {
+    width: 100%;
+    min-height: 56px;
+    padding-inline: 20px;
   }
   .hero-kicker {
     margin-bottom: 20px;
     font-size: 9px;
+    letter-spacing: 0.15em;
+  }
+  .motion-hero .hero-visual {
+    padding: 0;
   }
   .motion-hero .mosaic {
-    grid-template-rows: 126px 126px;
+    height: clamp(196px, 56vw, 250px);
+    grid-template-rows: none;
+  }
+  .motion-hero .mosaic-cell {
+    height: 100%;
+  }
+  .hero-dots {
+    justify-content: flex-start;
+    margin-top: 12px;
+  }
+  .hero-dots button {
+    width: 44px;
+    height: 44px;
   }
   .mosaic-caption {
     margin-top: 12px;
@@ -2208,6 +2240,14 @@ footer {
   .floating-whatsapp {
     top: auto;
     right: 18px;
-    bottom: 18px;
+    bottom: max(18px, env(safe-area-inset-bottom));
+  }
+}
+@media (max-width: 360px) {
+  .motion-hero {
+    padding-inline: 19px;
+  }
+  .motion-hero h1 {
+    font-size: clamp(2.55rem, 12vw, 3rem);
   }
 }

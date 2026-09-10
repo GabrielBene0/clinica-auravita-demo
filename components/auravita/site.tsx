@@ -345,36 +345,48 @@ function Shell({ children }: { children: ReactNode }) {
     gsap.registerPlugin(ScrollTrigger);
     const context = gsap.context(() => {
       const hero = document.querySelector<HTMLElement>(".motion-hero");
+      const mobileMotion = window.matchMedia("(max-width: 699px)").matches;
+      const motionDuration = (desktopDuration: number) =>
+        mobileMotion ? desktopDuration * 0.76 : desktopDuration;
       if (hero) {
         const select = gsap.utils.selector(hero);
+        const heroRadius = getComputedStyle(hero).borderTopLeftRadius || "28px";
         gsap
           .timeline({ defaults: { ease: "power4.out" } })
-          .from(".site-header", { y: -18, autoAlpha: 0, duration: 0.56 })
+          .from(".site-header", {
+            y: mobileMotion ? -12 : -18,
+            autoAlpha: 0,
+            duration: motionDuration(0.56),
+          })
           .fromTo(
             hero,
-            { y: -34, autoAlpha: 0, clipPath: "inset(0 0 100% 0 round 28px)" },
+            {
+              y: mobileMotion ? -22 : -34,
+              autoAlpha: 0,
+              clipPath: `inset(0 0 100% 0 round ${heroRadius})`,
+            },
             {
               y: 0,
               autoAlpha: 1,
-              clipPath: "inset(0 0 0% 0 round 28px)",
-              duration: 0.9,
+              clipPath: `inset(0 0 0% 0 round ${heroRadius})`,
+              duration: motionDuration(0.9),
               clearProps: "transform,opacity,visibility,clipPath",
             },
             "-=0.18",
           )
-          .from(select(".hero-kicker"), { y: -20, autoAlpha: 0, duration: 0.42 }, "-=0.48")
-          .from(select("h1"), { y: -34, autoAlpha: 0, duration: 0.76 }, "-=0.2")
-          .from(select(".hero-copy > p"), { y: -22, autoAlpha: 0, duration: 0.54 }, "-=0.42")
-          .from(select(".gold-rule"), { scaleX: 0, transformOrigin: "left", duration: 0.48 }, "-=0.3")
-          .from(select(".hero-copy .outline-button"), { y: -18, autoAlpha: 0, duration: 0.46 }, "-=0.3")
+          .from(select(".hero-kicker"), { y: -20, autoAlpha: 0, duration: motionDuration(0.42) }, "-=0.48")
+          .from(select("h1"), { y: mobileMotion ? -24 : -34, autoAlpha: 0, duration: motionDuration(0.76) }, "-=0.2")
+          .from(select(".hero-copy > p"), { y: -22, autoAlpha: 0, duration: motionDuration(0.54) }, "-=0.42")
+          .from(select(".gold-rule"), { scaleX: 0, transformOrigin: "left", duration: motionDuration(0.48) }, "-=0.3")
+          .from(select(".hero-copy .outline-button"), { y: -18, autoAlpha: 0, duration: motionDuration(0.46) }, "-=0.3")
           .from(select(".mosaic-cell"), {
-            y: -30,
+            y: mobileMotion ? -20 : -30,
             scale: 0.96,
             autoAlpha: 0,
-            duration: 0.62,
-            stagger: 0.1,
+            duration: motionDuration(0.62),
+            stagger: mobileMotion ? 0.06 : 0.1,
           }, "-=0.54")
-          .from(select(".mosaic-caption"), { y: -14, autoAlpha: 0, duration: 0.38 }, "-=0.18");
+          .from(select(".mosaic-caption"), { y: -14, autoAlpha: 0, duration: motionDuration(0.38) }, "-=0.18");
       }
 
       gsap.utils
@@ -385,11 +397,11 @@ function Shell({ children }: { children: ReactNode }) {
           );
           if (!targets.length) return;
           gsap.from(targets, {
-            y: 34,
+            y: mobileMotion ? 24 : 34,
             autoAlpha: 0,
-            duration: 0.7,
+            duration: motionDuration(0.7),
             ease: "power3.out",
-            stagger: 0.075,
+            stagger: mobileMotion ? 0.06 : 0.075,
             scrollTrigger: {
               trigger: section,
               start: "top 82%",
