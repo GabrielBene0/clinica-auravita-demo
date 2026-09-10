@@ -347,12 +347,12 @@ function Shell({ children }: { children: ReactNode }) {
       const hero = document.querySelector<HTMLElement>(".motion-hero");
       const mobileMotion = window.matchMedia("(max-width: 699px)").matches;
       const motionDuration = (desktopDuration: number) =>
-        mobileMotion ? desktopDuration * 0.76 : desktopDuration;
+        mobileMotion ? desktopDuration * 1.12 : desktopDuration;
       if (hero) {
         const select = gsap.utils.selector(hero);
         const heroRadius = getComputedStyle(hero).borderTopLeftRadius || "28px";
         gsap
-          .timeline({ defaults: { ease: "power4.out" } })
+          .timeline({ defaults: { ease: mobileMotion ? "power2.out" : "power4.out" } })
           .from(".site-header", {
             y: mobileMotion ? -12 : -18,
             autoAlpha: 0,
@@ -384,7 +384,7 @@ function Shell({ children }: { children: ReactNode }) {
             scale: 0.96,
             autoAlpha: 0,
             duration: motionDuration(0.62),
-            stagger: mobileMotion ? 0.06 : 0.1,
+            stagger: 0.1,
           }, "-=0.54")
           .from(select(".mosaic-caption"), { y: -14, autoAlpha: 0, duration: motionDuration(0.38) }, "-=0.18");
       }
@@ -400,8 +400,8 @@ function Shell({ children }: { children: ReactNode }) {
             y: mobileMotion ? 24 : 34,
             autoAlpha: 0,
             duration: motionDuration(0.7),
-            ease: "power3.out",
-            stagger: mobileMotion ? 0.06 : 0.075,
+            ease: mobileMotion ? "power2.out" : "power3.out",
+            stagger: mobileMotion ? 0.085 : 0.075,
             scrollTrigger: {
               trigger: section,
               start: "top 82%",
