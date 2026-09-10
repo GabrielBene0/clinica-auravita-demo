@@ -455,14 +455,14 @@ const heroImages = [
     pos: "60% 55%",
   },
   {
-    name: "team",
-    alt: "Equipe médica fictícia da Auravita, em imagem gerada",
-    pos: "50% 35%",
+    name: "laser",
+    alt: "Tecnologia a laser em ambiente clínico sofisticado, em imagem gerada",
+    pos: "50% 52%",
   },
   {
-    name: "care",
-    alt: "Detalhe de avaliação de pele em ambiente clínico",
-    pos: "88% 60%",
+    name: "consultation",
+    alt: "Consulta facial com espelho de análise em ambiente clínico, em imagem gerada",
+    pos: "65% 48%",
   },
 ];
 function HeroMosaic() {
