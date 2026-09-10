@@ -6,6 +6,10 @@ const titles: Record<string, string> = {
   contato: "Contato e agendamento",
   privacidade: "Privacidade da demonstração",
 };
+export function generateStaticParams() {
+  return Object.keys(titles).map((page) => ({ page }));
+}
+export const dynamicParams = false;
 export async function generateMetadata({
   params,
 }: {

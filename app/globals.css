@@ -3,13 +3,13 @@
 @import "../vendor/shadcn-tailwind-4.13.0.css";
 @font-face {
   font-family: Manrope;
-  src: url("/fonts/manrope-regular.ttf") format("truetype");
+  src: url("./manrope-regular.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: Manrope;
-  src: url("/fonts/manrope-semibold.ttf") format("truetype");
+  src: url("./manrope-semibold.ttf") format("truetype");
   font-weight: 500 800;
   font-display: swap;
 }

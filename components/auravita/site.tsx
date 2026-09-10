@@ -51,7 +51,9 @@ const Actions = createContext({
   book: (_specialty?: string) => {},
   chat: () => {},
 });
-const asset = (name: string) => `/images/${name}.webp`;
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const sitePath = (path: string) => `${basePath}${path}`;
+const asset = (name: string) => sitePath(`/images/${name}.webp`);
 
 function WhatsAppIcon({ size = 22 }: { size?: number }) {
   return (
@@ -77,7 +79,7 @@ function WhatsAppIcon({ size = 22 }: { size?: number }) {
 function Brand() {
   return (
     <Link className="brand" href="/" aria-label="Clínica Auravita — início">
-      <img src="/favicon.svg" width="54" height="54" alt="" />
+      <img src={sitePath("/favicon.svg")} width="54" height="54" alt="" />
       <span>
         <span className="brand-small">CLÍNICA</span>
         <span className="brand-name">AURAVITA</span>

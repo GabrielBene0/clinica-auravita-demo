@@ -1,6 +1,10 @@
 import { notFound } from "next/navigation";
 import { specialties } from "@/lib/auravita-data";
 import { SpecialtyPage } from "@/components/auravita/site";
+export function generateStaticParams() {
+  return specialties.map(({ slug }) => ({ slug }));
+}
+export const dynamicParams = false;
 export async function generateMetadata({
   params,
 }: {
