@@ -230,13 +230,19 @@ summary:focus-visible {
   display: none;
 }
 .outline-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
   min-height: 57px;
   padding: 15px 25px;
-  background: transparent;
+  background-color: transparent;
+  background-image: linear-gradient(108deg, transparent 34%, rgba(255,255,255,.12) 49%, transparent 64%);
+  background-size: 240% 100%;
+  background-position: 120% 0;
   border: 1px solid transparent;
   border-left-color: var(--gold);
   border-right-color: var(--gold);
@@ -247,23 +253,28 @@ summary:focus-visible {
   font-weight: 500;
   line-height: 1.5;
   transition:
-    background 0.25s,
+    background-color 0.3s,
+    background-position 0.7s cubic-bezier(.22, 1, .36, 1),
     border-color 0.25s,
-    transform 0.25s;
+    transform 0.25s,
+    box-shadow 0.3s;
   max-width: 100%;
 }
 .outline-button:hover {
-  background: #d7b85b15;
+  background-color: #d7b85b15;
+  background-position: -120% 0;
   border-color: var(--gold);
   transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(215,184,91,.12);
 }
 .outline-button.green {
   border-left-color: var(--green);
   border-right-color: var(--green);
 }
 .outline-button.green:hover {
-  background: #47bd7b12;
+  background-color: #47bd7b12;
   border-color: var(--green);
+  box-shadow: 0 10px 24px rgba(71,189,123,.12);
 }
 .header-book {
   min-height: 44px;
@@ -398,6 +409,17 @@ summary:focus-visible {
 }
 .section-heading .gold-rule {
   margin: 26px auto 0;
+}
+.reveal-ready {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateY(30px) scale(.985);
+  transition: opacity .8s cubic-bezier(.22, 1, .36, 1), transform .8s cubic-bezier(.22, 1, .36, 1), filter .7s ease;
+}
+.reveal-ready.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0) scale(1);
 }
 .carousel {
   overflow: hidden;
@@ -537,13 +559,25 @@ summary:focus-visible {
   gap: 16px;
 }
 .review {
+  position: relative;
+  overflow: hidden;
   background: #1a1c1c;
   padding: 22px 20px 25px;
   border-radius: 13px;
   min-height: 245px;
   transition: transform .35s cubic-bezier(.2,.8,.2,1), background .35s ease, box-shadow .35s ease;
 }
+.review::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at 88% 6%, rgba(215,184,91,.14), transparent 32%);
+  transition: opacity .4s ease;
+}
 .review:hover { transform: translateY(-7px); background: #202423; box-shadow: 0 17px 35px rgba(0,0,0,.22); }
+.review:hover::after { opacity: 1; }
 .review figcaption {
   display: flex;
   align-items: center;
@@ -634,6 +668,8 @@ summary:focus-visible {
 }
 .contact-tiles > a,
 .contact-tiles > button {
+  position: relative;
+  overflow: hidden;
   background: var(--panel);
   border-radius: 17px;
   min-height: 180px;
@@ -644,11 +680,13 @@ summary:focus-visible {
   text-align: center;
   padding: 24px 14px;
   gap: 6px;
-  transition: background 0.25s;
+  transition: background .35s ease, transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s ease;
 }
 .contact-tiles > a:hover,
 .contact-tiles > button:hover {
   background: #151919;
+  transform: translateY(-7px);
+  box-shadow: 0 20px 38px rgba(0,0,0,.24), inset 0 0 0 1px rgba(215,184,91,.12);
 }
 .contact-tiles svg {
   width: 38px;

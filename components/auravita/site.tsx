@@ -334,6 +334,29 @@ function Shell({ children }: { children: ReactNode }) {
   const [specialty, setSpecialty] = useState("");
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const elements = Array.from(
+      document.querySelectorAll<HTMLElement>(
+        "main > section, main > .contact-tiles, footer",
+      ),
+    );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12 },
+    );
+    elements.forEach((element) => {
+      element.classList.add("reveal-ready");
+      observer.observe(element);
+    });
+    return () => observer.disconnect();
+  }, []);
   return (
     <Actions.Provider
       value={{
