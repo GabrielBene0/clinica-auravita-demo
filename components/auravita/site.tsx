@@ -541,22 +541,22 @@ function Shell({ children }: { children: ReactNode }) {
 
 const heroImages = [
   {
-    name: "care",
+    name: "hero-consultation",
     alt: "Imagem gerada de atendimento dermatológico acolhedor",
     pos: "50% 48%",
   },
   {
-    name: "interior",
+    name: "hero-reception",
     alt: "Recepção sofisticada da clínica fictícia Auravita",
     pos: "60% 55%",
   },
   {
-    name: "laser",
+    name: "hero-technology",
     alt: "Tecnologia a laser em ambiente clínico sofisticado, em imagem gerada",
     pos: "50% 52%",
   },
   {
-    name: "consultation",
+    name: "hero-ritual",
     alt: "Consulta facial com espelho de análise em ambiente clínico, em imagem gerada",
     pos: "65% 48%",
   },
