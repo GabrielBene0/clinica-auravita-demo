@@ -2251,3 +2251,16 @@ footer {
     font-size: clamp(2.55rem, 12vw, 3rem);
   }
 }
+@media (max-width: 699px) and (hover: none) and (prefers-reduced-motion: no-preference) {
+  .motion-hero .outline-button {
+    animation: mobile-button-sheen 9.5s linear infinite;
+  }
+  @keyframes mobile-button-sheen {
+    0%, 68% {
+      background-position: 120% 0;
+    }
+    84%, 100% {
+      background-position: -120% 0;
+    }
+  }
+}
